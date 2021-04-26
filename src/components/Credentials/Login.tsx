@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-import { useAuth } from '../../contexts/AuthContext'
 import { Link, useHistory } from 'react-router-dom';
 import { Button, Card, Form, Alert } from 'react-bootstrap';
+import { login } from '../../api/userApi';
 
 export default function Login() {
-  const { login, currentUser } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -34,7 +33,6 @@ export default function Login() {
         <div>
           <h2 className="text-center">Log in </h2>
           {error && <Alert variant="danger">{error}</Alert>}
-          <p>{currentUser && currentUser.email}</p>
           <Form onSubmit={handleSubmit}>
               <Form.Label htmlFor="email">Email</Form.Label>
               <Form.Control id="email" type="email" required onChange={e => setEmail(e.target.value)}></Form.Control>

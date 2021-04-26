@@ -1,9 +1,9 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
+import { useAppSelector } from '../../store/storeHooks';
 
 export default function PrivateRoute({component, ...rest}: any) {
-  const {currentUser} = useAuth();
+  const currentUser = useAppSelector((state: any) => state.user.value);
   const routeComponent = (props: any) => (
     currentUser? React.createElement(component, props) : <Redirect to="/login" />
   )

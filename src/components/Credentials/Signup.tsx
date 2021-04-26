@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
-import { useAuth } from '../../contexts/AuthContext'
 import { Link, useHistory } from 'react-router-dom';
 import { Button, Card, Form, Alert } from 'react-bootstrap';
+import { signup } from '../../api/userApi';
 
 export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-  const { signup, currentUser } = useAuth();
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
   const history = useHistory();
@@ -38,7 +37,6 @@ export default function Signup() {
         <div>
           <h2 className="text-center">Sign up</h2>
           {error && <Alert variant="danger">{error}</Alert>}
-          <p>{currentUser && currentUser.email}</p>
           <Form onSubmit={handleSubmit}>
             <Form.Label htmlFor="email">Email</Form.Label>
             <Form.Control id="email" type="email" required onChange={e => setEmail(e.target.value)}></Form.Control>

@@ -1,10 +1,11 @@
 import React from 'react'
-import { useAuth } from '../../contexts/AuthContext';
+import { useAppSelector } from '../../store/storeHooks';
 import { useHistory } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
+import { logout } from '../../api/userApi';
 
 export default function MealsPlanner() {
-  const { currentUser, logout } = useAuth();
+  const user = useAppSelector((state: any) => state.user.value);
   const history = useHistory();
 
   async function handleLogout() {
@@ -20,7 +21,7 @@ export default function MealsPlanner() {
     <div>
       <h1>Planner</h1>
       <Button onClick={handleLogout} color="primary">Log out</Button>
-      <span>Email: {currentUser?.email}</span>
+      <span>Email: {user?.email}</span>
     </div>
   )
 }

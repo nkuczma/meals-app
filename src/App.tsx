@@ -6,20 +6,28 @@ import Signup from './components/Credentials/Signup';
 import MealsPlanner from './components/MealsPlanner/MealsPlanner';
 import Login from './components/Credentials/Login'
 import PrivateRoute from './components/Credentials/PrivateRoute';
-import { AuthProvider } from './contexts/AuthContext';
+import { useInitPlanner } from './hooks/useInitPlanner';
+import { useAppSelector } from './store/storeHooks';
 
 function App() {
+  useInitPlanner();
+  const user = useAppSelector((state) => state.user.value);
+  console.log(user)
   return (
     <div className="App">
-      <Router>
-        <AuthProvider>
-          <Switch>
-            <PrivateRoute exact path="/" component={MealsPlanner}/>
-            <Route path="/signup" component={Signup} />
-            <Route path="/login" component={Login} />
-          </Switch>
-        </AuthProvider>
-      </Router>
+      {user &&
+        <Router>
+            <Switch>
+              {
+                user &&
+                <PrivateRoute exact path="/" component={MealsPlanner}/>
+              }
+              
+              <Route path="/signup" component={Signup} />
+              <Route path="/login" component={Login} />
+            </Switch>
+        </Router>
+      }
     </div>
   );
 }
