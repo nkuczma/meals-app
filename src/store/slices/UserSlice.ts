@@ -1,11 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import firebase from 'firebase';
-// Define a type for the slice state
+
 interface UserState {
   value: firebase.auth.UserCredential | null;
 }
 
-// Define the initial state using that type
 const initialState: UserState = {
   value: null
 }

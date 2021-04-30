@@ -1,12 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userSlice from "./slices/UserSlice";
+import weekSlice from './slices/WeekSlice';
 
 export const store = configureStore({
   reducer: {
-    user: userSlice
-  }
+    user: userSlice,
+    week: weekSlice,
+  },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+        serializableCheck: false
+    }),
 });
 
 export type RootState = ReturnType<typeof store.getState>
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch
