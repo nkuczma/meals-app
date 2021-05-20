@@ -14,7 +14,6 @@ function App() {
   useInitPlanner(setLoading);
 
   const user = useAppSelector((state) => state.user.value);
-  const week = useAppSelector((state) => state.week.value);
 
   return (
     <div className="App">

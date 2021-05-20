@@ -1,6 +1,7 @@
 export type WeekType = {
   id: string,
   meals: MealsType[],
+  fridge: MapOfShortIngredients
 }
 
 export type MealsType = {
@@ -24,7 +25,6 @@ export type IngredientFullType = {
   //foodNutrients: [] //nutritiens 
 }
 
-export type FridgeType = Map<string, IngredientShortType>;
+export type IngredienstFullListType = Map<number, IngredientFullType>;
 
-export type IngredienstFullListType = Map<string, IngredientFullType>;
-
+export type MapOfShortIngredients = Map<number, IngredientShortType>;
