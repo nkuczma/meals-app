@@ -5,7 +5,7 @@ import { WeekType, MapOfShortIngredients } from '../../types/weekTypes';
 const weekSelector = (state: RootState) => state.week.value;
 
 const getSumOfWeekIngredients = (weekSelector: WeekType) => {
-  let mapOfSummedIngredients : MapOfShortIngredients = new Map;
+  let mapOfSummedIngredients : MapOfShortIngredients = new Map();
   if(weekSelector.meals) {
     weekSelector.meals.map((meal) => {
       meal.ingredients.map(ingredient => {
@@ -20,15 +20,16 @@ const getSumOfWeekIngredients = (weekSelector: WeekType) => {
 
 const calculateCurrentFridge = (weekSelector: WeekType, sumOfWeekIngredients: MapOfShortIngredients) => {
   let fridge = weekSelector.fridge;
-  let currentFridge : MapOfShortIngredients = new Map;
+  let currentFridge : MapOfShortIngredients = new Map();
   if(fridge) {
     fridge.forEach( (ingredient, id) => {
       let amountUsed = sumOfWeekIngredients.has(id)? sumOfWeekIngredients.get(id)!.amount: 0;
       let newAmount = ingredient.amount - amountUsed;
+      if(newAmount < 0) newAmount = 0;
       currentFridge.set(id, {id: id, amount: newAmount});
     });
   }
-  return currentFridge;
+  return Array.from(currentFridge, ([id, ingredient]) => (ingredient));
 }
 
 export const sumOfWeekIngredients = createSelector(

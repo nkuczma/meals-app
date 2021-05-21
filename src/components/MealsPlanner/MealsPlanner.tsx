@@ -1,14 +1,15 @@
 import React from 'react'
+import './MealsPlanner.scss';
 import { useAppSelector } from '../../store/storeHooks';
 import { useSelector } from "react-redux";
-import { useHistory } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
-import { logout } from '../../api/userApi';
 import { sumOfWeekIngredients, currentFridge } from '../../store/selectors/weekSelector';
+import NavbarMenu from '../NavbarMenu/NavbarMenu';
+import Day from '../Day/Day';
+import Fridge from '../Fridge/Fridge';
+import { Row, Col } from 'react-bootstrap';
+import { weekDaysDict } from '../../utils/dateUtils';
 
 export default function MealsPlanner() {
-  const user = useAppSelector((state: any) => state.user.value);
-  const history = useHistory();
   const week = useAppSelector((state) => state.week.value);
   const sumOfWeekIngr = useSelector(sumOfWeekIngredients);
   const currentFrid = useSelector(currentFridge);
@@ -16,20 +17,19 @@ export default function MealsPlanner() {
   console.log(sumOfWeekIngr);
   console.log(currentFrid);
 
-  async function handleLogout() {
-    try {
-      await logout();
-      history.push('/login');
-    }
-    catch {
-      console.log('failed to logout');
-    }
-  }
   return (
     <div>
-      <h1>Planner</h1>
-      <Button onClick={handleLogout} color="primary">Log out</Button>
-      <span>Email: {user?.email}</span>
+      <NavbarMenu />
+      <div className="week-container">
+        <Row>
+          { weekDaysDict.map( (day, index) => 
+            <Col key={`day${index}`}><Day index={index} dayName={day} /></Col>
+          )}
+        </Row>
+        <Row>
+          <Fridge />
+        </Row>
+      </div>
     </div>
   )
 }
