@@ -18,6 +18,7 @@ export type IngredientShortType = {
 }
 
 export type IngredientFullType = {
+  fdcId: number;
   description: string,
   servingSize: number,
   servingSizeUnit: string,

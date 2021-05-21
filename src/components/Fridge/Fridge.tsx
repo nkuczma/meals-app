@@ -3,12 +3,13 @@ import './Fridge.scss';
 import { useAppSelector } from '../../store/storeHooks';
 import { useSelector } from "react-redux";
 import { currentFridge } from '../../store/selectors/weekSelector';
+import { getFoodDataById } from '../../api/foodDataApi';
 
 export default function Fridge() {
   const week = useAppSelector((state) => state.week.value);
   const fridge = week?.fridge;
   const calculatedFridge = useSelector(currentFridge);
-
+  getFoodDataById([595040]);
   return (
     <div>
       <h3>Fridge</h3>

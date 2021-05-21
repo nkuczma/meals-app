@@ -19,17 +19,21 @@ export default function MealsPlanner() {
 
   return (
     <div>
-      <NavbarMenu />
-      <div className="week-container">
-        <Row>
-          { weekDaysDict.map( (day, index) => 
-            <Col key={`day${index}`}><Day index={index} dayName={day} /></Col>
-          )}
-        </Row>
-        <Row>
-          <Fridge />
-        </Row>
-      </div>
+      {week &&
+        <>
+        <NavbarMenu />
+        <div className="week-container">
+          <Row>
+            { weekDaysDict.map( (day, index) => 
+              <Col key={`day${index}`}><Day index={index} dayName={day} /></Col>
+            )}
+          </Row>
+          <Row>
+            <Fridge />
+          </Row>
+        </div>
+        </>
+      }
     </div>
   )
 }
