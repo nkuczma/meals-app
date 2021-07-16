@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { Button, Card, Form, Alert } from 'react-bootstrap';
 import { login } from '../api/userApi';
 
-export default function Login() {
+export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -28,7 +28,6 @@ export default function Login() {
   }
 
   return (
-    <div className="d-flex align-items-center justify-content-center" style={{ paddingTop: "50px" }}>
       <Card className="p-5" style={{ minWidth: "350px" }}>
         <div>
           <h2 className="text-center">Log in </h2>
@@ -46,6 +45,5 @@ export default function Login() {
           Need to create an account? <Link to="/signup">Sign up</Link>
         </div>
       </Card>
-    </div>
   )
 }

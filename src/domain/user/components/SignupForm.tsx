@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom';
 import { Button, Card, Form, Alert } from 'react-bootstrap';
-import { signup } from '../api/userApi';
+import { signup } from '../../../domain/user/api/userApi';
 
-export default function Signup() {
+export default function SignupForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
@@ -32,7 +32,6 @@ export default function Signup() {
   }
 
   return (
-    <div className="d-flex align-items-center justify-content-center" style={{ paddingTop: "50px" }}>
       <Card className="p-5" style={{ minWidth: "350px" }}>
         <div>
           <h2 className="text-center">Sign up</h2>
@@ -55,6 +54,5 @@ export default function Signup() {
           Already have account? <Link to="/login">Login</Link>
         </div>
       </Card>
-    </div>
   )
 }

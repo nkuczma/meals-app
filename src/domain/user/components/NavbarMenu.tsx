@@ -24,10 +24,13 @@ export default function NavbarMenu() {
     <Navbar bg="dark" variant="dark">
       <Navbar.Brand href="/">Meals Planner</Navbar.Brand>
       <Navbar.Collapse className="justify-content-end">
-        <Nav>
-          <Navbar.Text className=" mr-sm-4">{user?.email}</Navbar.Text>
-          <Button className=" mr-sm-4" onClick={handleLogout} color="primary">Log out</Button>
-        </Nav>
+        {
+          user &&
+          <Nav>
+            <Navbar.Text className=" mr-sm-4">{user?.email}</Navbar.Text>
+            <Button className=" mr-sm-4" onClick={handleLogout} color="primary">Log out</Button>
+          </Nav>
+        }
       </Navbar.Collapse>
     </Navbar>
   )

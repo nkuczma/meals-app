@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
-import Signup from 'domain/user/components/Signup';
+import Signup from 'application/pages/Signup/Signup'
 import MealsPlanner from './pages/MealsPlanner/MealsPlanner';
-import Login from 'domain/user/components/Login'
+import Login from 'application/pages/Login/Login';
 import PrivateRoute from 'domain/user/components/PrivateRoute';
 import { useInitUser } from 'domain/user/hooks/useInitUser';
 import { useAppSelector } from './store/storeHooks';
